@@ -21,7 +21,8 @@ import java.util.UUID;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
+//    private final WebClient webClient;
 
     public void placeOrder(OrderRequest orderRequest) {
         List<OrderLineItem> orderLineItems = orderRequest.getOrderLineItemDtoList()
@@ -38,8 +39,8 @@ public class OrderService {
                 .toList();
 
         //Call Inventory Service, and place order if product is in stock
-        InventoryStockResponse[] inventoryStockResponses = webClient.get()
-                .uri("http://localhost:8082/api/inventory",
+        InventoryStockResponse[] inventoryStockResponses = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodes).build())
                 .retrieve()
                 .bodyToMono(InventoryStockResponse[].class)
