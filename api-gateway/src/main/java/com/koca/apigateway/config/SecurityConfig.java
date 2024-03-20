@@ -15,7 +15,9 @@ public class SecurityConfig {
         serverHttpSecurity.csrf()
                 .disable()
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/eureka/**")
+                        // TODO : burasi, authentication server yazildiktan sonra acilacak
+                        //.pathMatchers("/eureka/**")
+                        .pathMatchers("/**")
                         .permitAll()
                         .anyExchange()
                         .authenticated())
