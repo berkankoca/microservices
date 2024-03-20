@@ -2,3 +2,7 @@
 2) discovery-server ayaklandırılır
 3) inventory, product, order service uygulamaları ayaklandırılır
 4) api-gateway ayaklandırılır
+
+
+SWAGGER
+    .../swagger-ui.html
